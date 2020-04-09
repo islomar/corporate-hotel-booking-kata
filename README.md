@@ -1,3 +1,5 @@
+[![](https://github.com/islomar/corporate-hotel-booking-kata/workflows/Java%20CI%20with%20Maven/badge.svg)](https://github.com/islomar/corporate-hotel-booking-kata/actions)
+
 # Corporate Hotel Booking kata
 https://katalyst.codurance.com/corporate-hotel-booking
 
