@@ -13,3 +13,6 @@ https://katalyst.codurance.com/corporate-hotel-booking
 
 ## How to run the tests
 `mvn clean test`
+
+## Documentation
+* [Domain Model Diagram](https://app.diagrams.net/?src=about#Hislomar%2Fcorporate-hotel-booking-kata%2Fmaster%2Fdocs%2FDomain%20Model%20Diagram.png)
