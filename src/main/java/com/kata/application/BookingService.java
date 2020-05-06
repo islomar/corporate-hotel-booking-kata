@@ -1,9 +1,6 @@
 package com.kata.application;
 
-import com.kata.domain.Booking;
-import com.kata.domain.BookingId;
-import com.kata.domain.BookingRepository;
-import com.kata.domain.InvalidDateRangeException;
+import com.kata.domain.*;
 
 import java.time.LocalDate;
 
@@ -16,9 +13,7 @@ public final class BookingService {
 	}
 
 	public Booking book(String employeeId, String hotelId, String roomType, LocalDate checkIn, LocalDate checkOut) throws InvalidDateRangeException {
-		if (checkIn.isAfter(checkOut)) {
-			throw new InvalidDateRangeException();
-		}
+		new BookingDatesRange(checkIn, checkOut);
 		Booking booking = new Booking(new BookingId());
 		this.bookingRepository.save(booking);
 		return booking;
