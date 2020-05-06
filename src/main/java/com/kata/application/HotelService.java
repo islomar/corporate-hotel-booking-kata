@@ -1,4 +1,6 @@
-package com.kata;
+package com.kata.application;
+
+import com.kata.domain.HotelRepository;
 
 public final class HotelService {
 	private final HotelRepository hotelRepository;
@@ -12,6 +14,6 @@ public final class HotelService {
 	}
 
 	public void setRoom(String hotelId, String roomNumber, String roomType) {
-		
+
 	}
 }

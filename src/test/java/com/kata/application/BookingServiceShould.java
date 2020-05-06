@@ -1,7 +1,13 @@
-package com.kata;
+package com.kata.application;
 
 
-import org.junit.Ignore;
+import com.kata.domain.Booking;
+import com.kata.domain.BookingRepository;
+import com.kata.domain.InvalidDateRangeException;
+import com.kata.infrastructure.InMemoryBookingRepository;
+import com.kata.infrastructure.InMemoryCompanyRepository;
+import com.kata.infrastructure.InMemoryHotelRepository;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import java.util.Date;
@@ -30,8 +36,8 @@ public class BookingServiceShould {
 		assertThat(foundBooking, is(booking));
 	}
 
+	@Disabled
 	@Test
-	@Ignore
 	public void not_proceed_with_the_booking_if_checkout_date_is_at_least_one_day_after_checkin_date() {
 		BookingRepository bookingRepository = new InMemoryBookingRepository();
 		BookingService bookingService = new BookingService(bookingRepository);

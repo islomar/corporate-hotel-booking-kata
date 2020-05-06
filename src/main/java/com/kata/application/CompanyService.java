@@ -1,4 +1,6 @@
-package com.kata;
+package com.kata.application;
+
+import com.kata.domain.CompanyRepository;
 
 public final class CompanyService {
 	private final CompanyRepository companyRepository;

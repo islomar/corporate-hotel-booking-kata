@@ -1,4 +1,4 @@
-package com.kata;
+package com.kata.domain;
 
 public interface BookingRepository {
 	Booking findById(BookingId bookingId);

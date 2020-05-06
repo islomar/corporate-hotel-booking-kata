@@ -1,4 +1,8 @@
-package com.kata;
+package com.kata.infrastructure;
+
+import com.kata.domain.Booking;
+import com.kata.domain.BookingId;
+import com.kata.domain.BookingRepository;
 
 import java.util.HashMap;
 import java.util.Map;

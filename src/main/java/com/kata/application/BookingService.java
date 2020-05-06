@@ -1,4 +1,8 @@
-package com.kata;
+package com.kata.application;
+
+import com.kata.domain.Booking;
+import com.kata.domain.BookingId;
+import com.kata.domain.BookingRepository;
 
 import java.util.Date;
 
