@@ -7,7 +7,6 @@ import com.kata.domain.InvalidDateRangeException;
 import com.kata.infrastructure.InMemoryBookingRepository;
 import com.kata.infrastructure.InMemoryCompanyRepository;
 import com.kata.infrastructure.InMemoryHotelRepository;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import java.util.Date;
@@ -19,7 +18,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 public class BookingServiceShould {
 
 	@Test
-	public void book_a_room() {
+	public void book_a_room() throws InvalidDateRangeException {
 		CompanyService companyService = new CompanyService(new InMemoryCompanyRepository());
 		companyService.addEmployee("anyCompanyId", "anyEmployeeId");
 		HotelService hotelService = new HotelService(new InMemoryHotelRepository());
@@ -27,8 +26,8 @@ public class BookingServiceShould {
 		hotelService.setRoom("anyHotelId", "anyRoomNumber", "anyRoomType");
 		BookingRepository bookingRepository = new InMemoryBookingRepository();
 		BookingService bookingService = new BookingService(bookingRepository);
-		Date checkIn = new Date();
-		Date checkOut = new Date();
+		Date checkIn = new Date(2019, 1, 1);
+		Date checkOut = new Date(2019, 1, 2);
 
 		Booking booking = bookingService.book("anyEmployeeId", "anyHotelId", "anyRoomType", checkIn, checkOut);
 
@@ -36,13 +35,12 @@ public class BookingServiceShould {
 		assertThat(foundBooking, is(booking));
 	}
 
-	@Disabled
 	@Test
 	public void not_proceed_with_the_booking_if_checkout_date_is_at_least_one_day_after_checkin_date() {
 		BookingRepository bookingRepository = new InMemoryBookingRepository();
 		BookingService bookingService = new BookingService(bookingRepository);
-		Date checkIn = new Date();
-		Date checkOut = new Date();
+		Date checkIn = new Date(2019, 1, 2);
+		Date checkOut = new Date(2019, 1, 1);
 
 		assertThrows(InvalidDateRangeException.class, () -> {
 			bookingService.book("anyEmployeeId", "anyHotelId", "anyRoomType", checkIn, checkOut);
