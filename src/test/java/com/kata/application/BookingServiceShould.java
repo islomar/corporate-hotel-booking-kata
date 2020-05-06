@@ -9,7 +9,7 @@ import com.kata.infrastructure.InMemoryCompanyRepository;
 import com.kata.infrastructure.InMemoryHotelRepository;
 import org.junit.jupiter.api.Test;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
@@ -26,8 +26,8 @@ public class BookingServiceShould {
 		hotelService.setRoom("anyHotelId", "anyRoomNumber", "anyRoomType");
 		BookingRepository bookingRepository = new InMemoryBookingRepository();
 		BookingService bookingService = new BookingService(bookingRepository);
-		Date checkIn = new Date(2019, 1, 1);
-		Date checkOut = new Date(2019, 1, 2);
+		LocalDate checkIn = LocalDate.of(2019, 1, 1);
+		LocalDate checkOut = LocalDate.of(2019, 1, 2);
 
 		Booking booking = bookingService.book("anyEmployeeId", "anyHotelId", "anyRoomType", checkIn, checkOut);
 
@@ -39,8 +39,8 @@ public class BookingServiceShould {
 	public void not_proceed_with_the_booking_if_checkout_date_is_at_least_one_day_after_checkin_date() {
 		BookingRepository bookingRepository = new InMemoryBookingRepository();
 		BookingService bookingService = new BookingService(bookingRepository);
-		Date checkIn = new Date(2019, 1, 2);
-		Date checkOut = new Date(2019, 1, 1);
+		LocalDate checkIn = LocalDate.of(2019, 1, 2);
+		LocalDate checkOut = LocalDate.of(2019, 1, 1);
 
 		assertThrows(InvalidDateRangeException.class, () -> {
 			bookingService.book("anyEmployeeId", "anyHotelId", "anyRoomType", checkIn, checkOut);
