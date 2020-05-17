@@ -43,9 +43,7 @@ public class BookingServiceShould {
 		LocalDate checkIn = LocalDate.of(2019, 1, 2);
 		LocalDate checkOut = LocalDate.of(2019, 1, 1);
 
-		assertThrows(InvalidDateRangeException.class, () -> {
-			bookingService.book("anyEmployeeId", "anyHotelId", "anyRoomType", checkIn, checkOut);
-		});
+		assertThrows(InvalidDateRangeException.class, () -> bookingService.book("anyEmployeeId", "anyHotelId", "anyRoomType", checkIn, checkOut));
 		assertThat(bookingRepository.findAll(), is(empty()));
 	}
 

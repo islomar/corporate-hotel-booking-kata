@@ -4,13 +4,13 @@ import com.kata.domain.Booking;
 import com.kata.domain.BookingId;
 import com.kata.domain.BookingRepository;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 public final class InMemoryBookingRepository implements BookingRepository {
-	Map<BookingId, Booking> bookings;
+	private Map<BookingId, Booking> bookings;
 
 	public InMemoryBookingRepository() {
 		this.bookings = new HashMap<>();
@@ -27,6 +27,6 @@ public final class InMemoryBookingRepository implements BookingRepository {
 	}
 
 	public List<Booking> findAll() {
-		return this.bookings.values().stream().collect(Collectors.toList());
+		return new ArrayList<>(this.bookings.values());
 	}
 }

@@ -24,13 +24,13 @@ class BookingDatesRangeShould {
 
 	private static Stream<Arguments> provideInvalidDateRanges() {
 		return Stream.of(
-				Arguments.of(TOMORROW, TODAY, "ChekIn is before Checkout"),
-				Arguments.of(TODAY, TODAY, "ChekIn is the same day than Checkout")
+				Arguments.of(TOMORROW, TODAY, "CheckIn is before Checkout"),
+				Arguments.of(TODAY, TODAY, "CheckIn is the same day than Checkout")
 		);
 	}
 
 	@Test
-	public void create_an_object_if_checkOut_is_at_leat_one_day_after_checkIn() {
+	public void create_an_object_if_checkOut_is_at_least_one_day_after_checkIn() {
 		assertDoesNotThrow(() -> new BookingDatesRange(TODAY, TOMORROW));
 	}
 }
