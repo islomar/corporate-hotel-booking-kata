@@ -8,7 +8,7 @@ public final class BookingDatesRange {
 	}
 
 	private void validate(LocalDate checkIn, LocalDate checkOut) throws InvalidDateRangeException {
-		if (checkIn.isAfter(checkOut)) {
+		if (checkIn.isAfter(checkOut) || checkIn.isEqual(checkOut)) {
 			throw new InvalidDateRangeException();
 		}
 	}
