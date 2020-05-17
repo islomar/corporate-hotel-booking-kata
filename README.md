@@ -16,3 +16,6 @@ https://katalyst.codurance.com/corporate-hotel-booking
 
 ## Documentation
 * [Domain Model Diagram](https://app.diagrams.net/?src=about#Hislomar%2Fcorporate-hotel-booking-kata%2Fmaster%2Fdocs%2FDomain%20Model%20Diagram.png)
+
+## Not done
+* Verify checkIn date is not before today.

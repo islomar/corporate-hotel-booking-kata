@@ -17,9 +17,6 @@ class BookingDatesRangeShould {
 	@ParameterizedTest
 	@MethodSource("provideInvalidDateRanges")
 	public void throw_exception_when_checkout_date_is_prior_to_the_checkin_date(LocalDate checkIn, LocalDate checkOut) {
-//		LocalDate checkIn = LocalDate.of(2019, 1, 2);
-//		LocalDate checkOut = LocalDate.of(2019, 1, 1);
-
 		assertThrows(InvalidDateRangeException.class, () -> {
 			new BookingDatesRange(checkIn, checkOut);
 		});
