@@ -1,22 +1,18 @@
-# Esqueleto para Java 8
-Este es un proyecto para ser usado como esqueleto de las katas, usando las siguientes tecnologías:
+[![](https://github.com/islomar/corporate-hotel-booking-kata/workflows/Java%20CI%20with%20Maven/badge.svg)](https://github.com/islomar/corporate-hotel-booking-kata/actions)
 
-* Java 8
-* Maven
-* TestNG
-* Hamcrest
+# Corporate Hotel Booking kata
+https://katalyst.codurance.com/corporate-hotel-booking
 
-## Requisitos
-1. Tener instalado y configurado **Maven 3.x** (variables M2_HOME, M2, MAVEN_OPTS, PATH...)
+## Requirements
+1. You need to have installed **Maven 3.x** (variables M2_HOME, M2, MAVEN_OPTS, PATH...)
    * https://maven.apache.org/install.html
-   * Ejemplo en Ubuntu: https://www.vultr.com/docs/how-to-install-apache-maven-on-ubuntu-16-04
-2. Tener instalado el **JDK 1.8**
-   * E.g. para Ubuntu: https://www.digitalocean.com/community/tutorials/how-to-install-java-with-apt-get-on-ubuntu-16-04
-   * ¡Configura la variable JAVA_HOME correctamente!
-3. Tener conectividad a Internet
+   * Example for Ubuntu: https://www.vultr.com/docs/how-to-install-apache-maven-on-ubuntu-16-04
+2. You need **JDK 1.8**
+   * E.g. for Ubuntu: https://www.digitalocean.com/community/tutorials/how-to-install-java-with-apt-get-on-ubuntu-16-04
+   * You should have JAVA_HOME correctly configured!
 
-## Cómo verificar que todo funciona correctamente
-Hay varias maneras de verificarlo, por ejemplo:
+## How to run the tests
+`mvn clean test`
 
-* Desde el IDE (e.g. IntelliJ, Eclipse, etc.): ejecutando el test y viendo que se pone en verde.
-* Desde el terminal, ejecutando `mvn clean test`: debería descargarse todas las dependencias y acabar indicando que el test se ha ejecutado con éxito.
+## Documentation
+* [Domain Model Diagram](https://app.diagrams.net/?src=about#Hislomar%2Fcorporate-hotel-booking-kata%2Fmaster%2Fdocs%2FDomain%20Model%20Diagram.png)
