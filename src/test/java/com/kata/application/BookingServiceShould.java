@@ -38,7 +38,7 @@ public class BookingServiceShould {
 
 	@Test
 	public void not_proceed_with_the_booking_if_checkout_date_is_at_least_one_day_after_checkin_date() {
-		BookingRepository bookingRepository = new InMemoryBookingRepository();
+		InMemoryBookingRepository bookingRepository = new InMemoryBookingRepository();
 		BookingService bookingService = new BookingService(bookingRepository);
 		LocalDate checkIn = LocalDate.of(2019, 1, 2);
 		LocalDate checkOut = LocalDate.of(2019, 1, 1);

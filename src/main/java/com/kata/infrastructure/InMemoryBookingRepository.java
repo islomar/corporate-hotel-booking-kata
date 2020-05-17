@@ -26,7 +26,6 @@ public final class InMemoryBookingRepository implements BookingRepository {
 		bookings.put(booking.getId(), booking);
 	}
 
-	@Override
 	public List<Booking> findAll() {
 		return this.bookings.values().stream().collect(Collectors.toList());
 	}
