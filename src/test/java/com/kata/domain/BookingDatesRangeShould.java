@@ -1,5 +1,6 @@
 package com.kata.domain;
 
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -7,6 +8,7 @@ import org.junit.jupiter.params.provider.MethodSource;
 import java.time.LocalDate;
 import java.util.stream.Stream;
 
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class BookingDatesRangeShould {
@@ -27,5 +29,10 @@ class BookingDatesRangeShould {
 				Arguments.of(TOMORROW, TODAY, "ChekIn is before Checkout"),
 				Arguments.of(TODAY, TODAY, "ChekIn is the same day than Checkout")
 		);
+	}
+
+	@Test
+	public void create_an_object_if_checkOut_is_at_leat_one_day_after_checkIn() {
+		assertDoesNotThrow(() -> new BookingDatesRange(TODAY, TOMORROW));
 	}
 }
