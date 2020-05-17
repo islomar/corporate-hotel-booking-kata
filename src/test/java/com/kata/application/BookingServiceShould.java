@@ -12,6 +12,7 @@ import org.junit.jupiter.api.Test;
 import java.time.LocalDate;
 
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.empty;
 import static org.hamcrest.core.Is.is;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
@@ -45,8 +46,7 @@ public class BookingServiceShould {
 		assertThrows(InvalidDateRangeException.class, () -> {
 			bookingService.book("anyEmployeeId", "anyHotelId", "anyRoomType", checkIn, checkOut);
 		});
-		//check an exception is thrown
-		//check the booking was not done
+		assertThat(bookingRepository.findAll(), is(empty()));
 	}
 
 	/**
