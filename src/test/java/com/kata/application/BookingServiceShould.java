@@ -20,11 +20,11 @@ public class BookingServiceShould {
 	public void book_a_room() throws InvalidDateRangeException, HotelNotFoundException {
 		CompanyService companyService = new CompanyService(new InMemoryCompanyRepository());
 		companyService.addEmployee("anyCompanyId", "anyEmployeeId");
-		HotelService hotelService = new HotelService(new InMemoryHotelRepository());
+		HotelRepository hotelRepository = new InMemoryHotelRepository();
+		HotelService hotelService = new HotelService(hotelRepository);
 		hotelService.addHotel("anyHotelId", "anyHotelName");
 		hotelService.setRoom("anyHotelId", "anyRoomNumber", "anyRoomType");
 		BookingRepository bookingRepository = new InMemoryBookingRepository();
-		HotelRepository hotelRepository = new InMemoryHotelRepository();
 		BookingService bookingService = new BookingService(bookingRepository, hotelRepository);
 		LocalDate checkIn = LocalDate.of(2019, 1, 1);
 		LocalDate checkOut = LocalDate.of(2019, 1, 2);
@@ -36,9 +36,11 @@ public class BookingServiceShould {
 	}
 
 	@Test
-	public void not_proceed_with_the_booking_if_checkout_date_is_at_least_one_day_after_checkin_date() {
+	public void not_proceed_with_the_booking_if_checkout_date_is_at_least_one_day_after_checkin_date() throws HotelNotFoundException {
 		InMemoryBookingRepository bookingRepository = new InMemoryBookingRepository();
 		HotelRepository hotelRepository = new InMemoryHotelRepository();
+		HotelService hotelService = new HotelService(hotelRepository);
+		hotelService.addHotel("anyHotelId", "anyHotelName");
 		BookingService bookingService = new BookingService(bookingRepository, hotelRepository);
 		LocalDate checkIn = LocalDate.of(2019, 1, 2);
 		LocalDate checkOut = LocalDate.of(2019, 1, 1);
