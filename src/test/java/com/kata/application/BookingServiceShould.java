@@ -60,6 +60,7 @@ public class BookingServiceShould {
 		LocalDate checkOut = LocalDate.of(2019, 1, 2);
 
 		assertThrows(HotelNotFoundException.class, () -> bookingService.book("anyEmployeeId", "aNonExistingHotelId", "anyRoomType", checkIn, checkOut));
+		//TODO assertThat(bookingRepository.findAll(), is(empty()));
 	}
 
 	/**

@@ -14,6 +14,7 @@ public final class HotelService {
 	}
 
 	public void addHotel(String hotelId, String hotelName) throws HotelNotFoundException {
+		//TODO do the same refactor than in BookingService
 		Optional<Hotel> hotel = this.hotelRepository.findById(hotelId);
 		if (hotel.isPresent()) {
 			throw new HotelNotFoundException();
