@@ -3,7 +3,6 @@ package com.kata.application;
 import com.kata.domain.*;
 
 import java.time.LocalDate;
-import java.util.Optional;
 
 public final class BookingService {
 	private final BookingRepository bookingRepository;
@@ -16,11 +15,7 @@ public final class BookingService {
 	}
 
 	public Booking book(String employeeId, String hotelId, String roomType, LocalDate checkIn, LocalDate checkOut) throws InvalidDateRangeException, HotelNotFoundException {
-		Optional<Hotel> hotel = this.hotelRepository.findById(hotelId);
-		if (!hotel.isPresent()) {
-			throw new HotelNotFoundException();
-		}
-//		hotel.orElseThrow(HotelNotFoundException::new);
+		this.hotelRepository.findById(hotelId).orElseThrow(HotelNotFoundException::new);
 		new BookingDatesRange(checkIn, checkOut);
 		Booking booking = new Booking(new BookingId());
 		this.bookingRepository.save(booking);
