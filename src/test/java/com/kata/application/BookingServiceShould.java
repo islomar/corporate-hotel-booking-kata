@@ -53,14 +53,14 @@ public class BookingServiceShould {
 	public void not_proceed_with_the_booking_if_hotel_does_not_exist() {
 		CompanyService companyService = new CompanyService(new InMemoryCompanyRepository());
 		companyService.addEmployee("anyCompanyId", "anyEmployeeId");
-		BookingRepository bookingRepository = new InMemoryBookingRepository();
-		HotelRepository hotelRepository = new InMemoryHotelRepository();
+		InMemoryBookingRepository bookingRepository = new InMemoryBookingRepository();
+        HotelRepository hotelRepository = new InMemoryHotelRepository();
 		BookingService bookingService = new BookingService(bookingRepository, hotelRepository);
 		LocalDate checkIn = LocalDate.of(2019, 1, 1);
 		LocalDate checkOut = LocalDate.of(2019, 1, 2);
 
 		assertThrows(HotelNotFoundException.class, () -> bookingService.book("anyEmployeeId", "aNonExistingHotelId", "anyRoomType", checkIn, checkOut));
-		//TODO assertThat(bookingRepository.findAll(), is(empty()));
+        assertThat("The booking should not have been done", bookingRepository.findAll(), is(empty()));
 	}
 
 	/**
