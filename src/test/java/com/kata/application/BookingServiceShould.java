@@ -5,6 +5,7 @@ import com.kata.domain.*;
 import com.kata.infrastructure.InMemoryBookingRepository;
 import com.kata.infrastructure.InMemoryCompanyRepository;
 import com.kata.infrastructure.InMemoryHotelRepository;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
@@ -17,7 +18,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 public class BookingServiceShould {
 
 	@Test
-	public void book_a_room() throws InvalidDateRangeException, HotelNotFoundException {
+	public void book_a_room() throws InvalidDateRangeException, HotelNotFoundException, NonExistingRoomTypeException {
 		CompanyService companyService = new CompanyService(new InMemoryCompanyRepository());
 		companyService.addEmployee("anyCompanyId", "anyEmployeeId");
 		HotelRepository hotelRepository = new InMemoryHotelRepository();
@@ -41,6 +42,7 @@ public class BookingServiceShould {
 		HotelRepository hotelRepository = new InMemoryHotelRepository();
 		HotelService hotelService = new HotelService(hotelRepository);
 		hotelService.addHotel("anyHotelId", "anyHotelName");
+		hotelService.setRoom("anyHotelId", "anyRoomNumber", "anyRoomType");
 		BookingService bookingService = new BookingService(bookingRepository, hotelRepository);
 		LocalDate checkIn = LocalDate.of(2019, 1, 2);
 		LocalDate checkOut = LocalDate.of(2019, 1, 1);
@@ -63,12 +65,28 @@ public class BookingServiceShould {
         assertThat("The booking should not have been done", bookingRepository.findAll(), is(empty()));
 	}
 
+	@Test
+	@Disabled("acceptance test, waiting for the inner implementation")
+	public void not_proceed_with_the_booking_if_room_type_does_not_exist() throws HotelNotFoundException {
+		CompanyService companyService = new CompanyService(new InMemoryCompanyRepository());
+		companyService.addEmployee("anyCompanyId", "anyEmployeeId");
+		HotelRepository hotelRepository = new InMemoryHotelRepository();
+		HotelService hotelService = new HotelService(hotelRepository);
+		hotelService.addHotel("anyHotelId", "anyHotelName");
+		hotelService.setRoom("anyHotelId", "anyRoomNumber", "anyRoomType");
+		InMemoryBookingRepository bookingRepository = new InMemoryBookingRepository();
+		BookingService bookingService = new BookingService(bookingRepository, hotelRepository);
+		LocalDate checkIn = LocalDate.of(2019, 1, 1);
+		LocalDate checkOut = LocalDate.of(2019, 1, 2);
+
+		assertThrows(NonExistingRoomTypeException.class, () -> bookingService.book("anyEmployeeId", "anyHotelId", "nonExistingRoomType", checkIn, checkOut));
+		assertThat("The booking should not have been done", bookingRepository.findAll(), is(empty()));
+	}
+
 	/**
 	 * TEST CASES: which is the most simple failing test which would help us to move on?
 	 * No availability in these dates for a room type
 	 * Non existing employeeId
-	 * Non existing hotelId
-	 * Non existing roomType
 	 */
 
 	/**

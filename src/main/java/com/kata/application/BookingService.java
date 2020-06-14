@@ -14,9 +14,12 @@ public final class BookingService {
 		this.hotelRepository = hotelRepository;
 	}
 
-	public Booking book(String employeeId, String hotelId, String roomType, LocalDate checkIn, LocalDate checkOut) throws InvalidDateRangeException, HotelNotFoundException {
-		this.hotelRepository.findById(hotelId).orElseThrow(HotelNotFoundException::new);
-		new BookingDatesRange(checkIn, checkOut);
+	public Booking book(String employeeId, String hotelId, String roomType, LocalDate checkIn, LocalDate checkOut) throws InvalidDateRangeException, HotelNotFoundException, NonExistingRoomTypeException {
+        Hotel hotel = this.hotelRepository.findById(hotelId).orElseThrow(HotelNotFoundException::new);
+        if (!hotel.hasRoomType(roomType)) {
+            throw new NonExistingRoomTypeException();
+        }
+        new BookingDatesRange(checkIn, checkOut);
 		Booking booking = new Booking(new BookingId());
 		this.bookingRepository.save(booking);
 		return booking;

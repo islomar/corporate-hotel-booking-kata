@@ -1,10 +1,12 @@
 package com.kata.application;
 
+import com.kata.domain.Hotel;
 import com.kata.domain.HotelNotFoundException;
 import com.kata.infrastructure.InMemoryHotelRepository;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class HotelServiceShould {
 
@@ -13,6 +15,18 @@ class HotelServiceShould {
 		HotelService hotelService = new HotelService(new InMemoryHotelRepository());
 
 		hotelService.addHotel("anyHotelId", "anyHotelName");
+	}
+
+	@Test
+	public void set_a_room() throws HotelNotFoundException {
+		InMemoryHotelRepository hotelRepository = new InMemoryHotelRepository();
+		HotelService hotelService = new HotelService(hotelRepository);
+		hotelService.addHotel("anyHotelId", "anyHotelName");
+
+		hotelService.setRoom("anyHotelId", "anyRoomNumber", "anyRoomType");
+
+		Hotel hotel = hotelRepository.findById("anyHotelId").get();
+		assertTrue(hotel.hasRoomType("anyRoomType"));
 	}
 
 	@Test
