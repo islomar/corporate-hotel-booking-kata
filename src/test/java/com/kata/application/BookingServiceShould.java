@@ -5,7 +5,6 @@ import com.kata.domain.*;
 import com.kata.infrastructure.InMemoryBookingRepository;
 import com.kata.infrastructure.InMemoryCompanyRepository;
 import com.kata.infrastructure.InMemoryHotelRepository;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
@@ -66,7 +65,6 @@ public class BookingServiceShould {
 	}
 
 	@Test
-	@Disabled("acceptance test, waiting for the inner implementation")
 	public void not_proceed_with_the_booking_if_room_type_does_not_exist() throws HotelNotFoundException {
 		CompanyService companyService = new CompanyService(new InMemoryCompanyRepository());
 		companyService.addEmployee("anyCompanyId", "anyEmployeeId");

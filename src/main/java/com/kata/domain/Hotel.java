@@ -18,7 +18,7 @@ public final class Hotel {
     }
 
     public boolean hasRoomType(String roomType) {
-        return true;
+        return this.rooms.containsKey(roomType);
     }
 
     public void addRoom(String roomType, String roomNumber) {
