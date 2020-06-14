@@ -11,8 +11,12 @@ https://katalyst.codurance.com/corporate-hotel-booking
    * E.g. for Ubuntu: https://www.digitalocean.com/community/tutorials/how-to-install-java-with-apt-get-on-ubuntu-16-04
    * You should have JAVA_HOME correctly configured!
 
+## Set up the development environment
+Run `make setup-devenv`. It will:
+    * Configure the Git hooks.
+
 ## How to run the tests
-`mvn clean test`
+`mvn clean test` or `make test`
 
 ## Documentation
 * [Domain Model Diagram](https://app.diagrams.net/?src=about#Hislomar%2Fcorporate-hotel-booking-kata%2Fmaster%2Fdocs%2FDomain%20Model%20Diagram.png)
