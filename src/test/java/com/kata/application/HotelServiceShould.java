@@ -2,11 +2,15 @@ package com.kata.application;
 
 import com.kata.domain.Hotel;
 import com.kata.domain.HotelNotFoundException;
+import com.kata.domain.HotelRepository;
 import com.kata.infrastructure.InMemoryHotelRepository;
 import org.junit.jupiter.api.Test;
 
+import java.util.Set;
+
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.core.IsCollectionContaining.hasItem;
 import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class HotelServiceShould {
 
@@ -19,14 +23,15 @@ class HotelServiceShould {
 
 	@Test
 	public void set_a_room() throws HotelNotFoundException {
-		InMemoryHotelRepository hotelRepository = new InMemoryHotelRepository();
+		HotelRepository hotelRepository = new InMemoryHotelRepository();
 		HotelService hotelService = new HotelService(hotelRepository);
 		hotelService.addHotel("anyHotelId", "anyHotelName");
 
 		hotelService.setRoom("anyHotelId", "anyRoomNumber", "anyRoomType");
 
 		Hotel hotel = hotelRepository.findById("anyHotelId").get();
-		assertTrue(hotel.hasRoomType("anyRoomType"));
+		Set<String> roomNumbers = hotel.getRooms().get("anyRoomType");
+		assertThat(roomNumbers, hasItem("anyRoomNumber"));
 	}
 
 	@Test

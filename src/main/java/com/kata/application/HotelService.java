@@ -14,7 +14,6 @@ public final class HotelService {
 	}
 
 	public void addHotel(String hotelId, String hotelName) throws HotelNotFoundException {
-		//TODO do the same refactor than in BookingService
 		Optional<Hotel> hotel = this.hotelRepository.findById(hotelId);
 		if (hotel.isPresent()) {
 			throw new HotelNotFoundException();
@@ -22,7 +21,9 @@ public final class HotelService {
 		this.hotelRepository.addHotel(hotelId, hotelName);
 	}
 
-	public void setRoom(String hotelId, String roomNumber, String roomType) {
-
+	public void setRoom(String hotelId, String roomNumber, String roomType) throws HotelNotFoundException {
+		Optional<Hotel> hotel = this.hotelRepository.findById(hotelId);
+		hotel.get().addRoom(roomType, roomNumber);
+		this.hotelRepository.save(hotel.get());
 	}
 }

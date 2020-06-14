@@ -25,6 +25,11 @@ public final class InMemoryHotelRepository implements HotelRepository {
 
 	@Override
 	public void addHotel(String hotelId, String hotelName) {
-		this.hotels.put(hotelId, new Hotel());
+		this.hotels.put(hotelId, new Hotel(hotelId, hotelName));
+	}
+
+	@Override
+	public void save(Hotel hotel) {
+		this.hotels.put(hotel.getHotelId(), hotel);
 	}
 }
