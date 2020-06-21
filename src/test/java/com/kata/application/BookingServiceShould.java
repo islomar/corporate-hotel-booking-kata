@@ -81,16 +81,4 @@ public class BookingServiceShould {
 		assertThat("The booking should not have been done", bookingRepository.findAll(), is(empty()));
 	}
 
-	/**
-	 * TEST CASES: which is the most simple failing test which would help us to move on?
-	 * No availability in these dates for a room type
-	 * Non existing employeeId
-	 */
-
-	/**
-	 * PENDING
-	 * Fix package structure
-	 * Create VO for all Ids
-	 * Dates: use natural language, e.g. "today", "tomorrow".
-	 */
 }
