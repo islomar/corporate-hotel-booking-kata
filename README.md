@@ -21,23 +21,11 @@ Run `make setup-devenv`. It will:
 ## Documentation
 * [Domain Model Diagram](https://app.diagrams.net/?src=about#Hislomar%2Fcorporate-hotel-booking-kata%2Fmaster%2Fdocs%2FDomain%20Model%20Diagram.png)
 
-## Not done
-* Verify checkIn date is not before today.
-* Unhappy path when setting a room (HotelService)
-* Refactors:
-    * Use types instead of primitives
-    * Extract constants
-    * Refactor test arrangements
-    
-	/**
-	 * TEST CASES: which is the most simple failing test which would help us to move on?
-	 * No availability in these dates for a room type
-	 * Non existing employeeId
-	 */
 
-	/**
-	 * PENDING
-	 * Fix package structure
-	 * Create VO for all Ids
-	 * Dates: use natural language, e.g. "today", "tomorrow".
-	 */    
+## BACKLOG
+* Refactors:
+    * Improve data structure for rooms inside HotelService
+    * Use types instead of primitives
+    
+* TEST CASES: which is the most simple failing test which would help us to move on?
+    * Next booking requirement: Verify if booking is allowed according to the booking policies defined, if any. See Booking Policy Service for more details.
