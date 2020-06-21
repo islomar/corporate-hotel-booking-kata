@@ -23,3 +23,8 @@ Run `make setup-devenv`. It will:
 
 ## Not done
 * Verify checkIn date is not before today.
+* Unhappy path when setting a room (HotelService)
+* Refactors:
+    * Use types instead of primitives
+    * Extract constants
+    * Refactor test arrangements
