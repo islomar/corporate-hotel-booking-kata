@@ -1,8 +1,8 @@
 package com.kata.application;
 
-import com.kata.domain.Hotel;
-import com.kata.domain.HotelNotFoundException;
-import com.kata.domain.HotelRepository;
+import com.kata.domain.hotel.Hotel;
+import com.kata.domain.hotel.HotelNotFoundException;
+import com.kata.domain.hotel.HotelRepository;
 
 import java.util.Optional;
 

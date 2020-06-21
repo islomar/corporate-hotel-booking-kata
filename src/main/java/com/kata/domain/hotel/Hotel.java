@@ -1,4 +1,4 @@
-package com.kata.domain;
+package com.kata.domain.hotel;
 
 import java.util.HashMap;
 import java.util.HashSet;

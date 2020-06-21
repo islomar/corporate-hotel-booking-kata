@@ -1,16 +1,16 @@
 package com.kata.application;
 
-import com.kata.domain.CompanyRepository;
+import com.kata.domain.company.CompanyRepository;
 
 public final class CompanyService {
-	private final CompanyRepository companyRepository;
+    private final CompanyRepository companyRepository;
 
-	public CompanyService(CompanyRepository companyRepository) {
+    public CompanyService(CompanyRepository companyRepository) {
 
-		this.companyRepository = companyRepository;
-	}
+        this.companyRepository = companyRepository;
+    }
 
-	public void addEmployee(String companyId, String employeeId) {
+    public void addEmployee(String companyId, String employeeId) {
 
-	}
+    }
 }

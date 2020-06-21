@@ -1,4 +1,4 @@
-package com.kata.domain;
+package com.kata.domain.hotel;
 
 public class NonExistingRoomTypeException extends Exception {
 }

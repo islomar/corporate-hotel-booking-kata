@@ -1,7 +1,12 @@
 package com.kata.application;
 
 
-import com.kata.domain.*;
+import com.kata.domain.booking.Booking;
+import com.kata.domain.booking.BookingRepository;
+import com.kata.domain.booking.InvalidDateRangeException;
+import com.kata.domain.hotel.HotelNotFoundException;
+import com.kata.domain.hotel.HotelRepository;
+import com.kata.domain.hotel.NonExistingRoomTypeException;
 import com.kata.infrastructure.InMemoryBookingRepository;
 import com.kata.infrastructure.InMemoryCompanyRepository;
 import com.kata.infrastructure.InMemoryHotelRepository;
