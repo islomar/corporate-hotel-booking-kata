@@ -22,11 +22,8 @@ public final class HotelService {
     }
 
     public void setRoom(String hotelId, String roomNumber, String roomType) throws HotelNotFoundException {
-        Optional<Hotel> hotel = this.hotelRepository.findById(hotelId);
-        if (!hotel.isPresent()) {
-            throw new HotelNotFoundException();
-        }
-        hotel.get().addRoom(roomType, roomNumber);
-        this.hotelRepository.save(hotel.get());
+        Hotel hotel = this.hotelRepository.findById(hotelId).orElseThrow(HotelNotFoundException::new);
+        hotel.addRoom(roomType, roomNumber);
+        this.hotelRepository.save(hotel);
     }
 }
