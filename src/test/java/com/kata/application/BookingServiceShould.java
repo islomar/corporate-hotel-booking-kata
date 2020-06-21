@@ -8,23 +8,13 @@ import com.kata.infrastructure.InMemoryHotelRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.time.LocalDate;
-
+import static com.kata.TestData.*;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.empty;
 import static org.hamcrest.core.Is.is;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class BookingServiceShould {
-
-    private static final LocalDate TODAY = LocalDate.of(2019, 1, 1);
-    private static final LocalDate TOMORROW = LocalDate.of(2019, 1, 2);
-    private static final String ANY_HOTEL_ID = "anyHotelId";
-    private static final String ANY_HOTEL_NAME = "anyHotelName";
-    private static final String ANY_ROOM_NUMBER = "anyRoomNumber";
-    private static final String ANY_ROOM_TYPE = "anyRoomType";
-    private static final String ANY_EMPLOYEE_ID = "anyEmployeeId";
-    private static final String ANY_COMPANY_ID = "anyCompanyId";
     private HotelService hotelService;
     private BookingService bookingService;
     private BookingRepository bookingRepository;
