@@ -1,6 +1,6 @@
 ![Run build and tests workflow](https://github.com/islomar/java-kata-template/actions/workflows/gradle.yml/badge.svg)
 
-# Java template for a kata
+# Corporate Hotel Booking kata
 
 - Template repository for Java katas
 - The repository is created as a **GitHub repository template**, so that you can easily create your own GitHub
