@@ -2,6 +2,7 @@
 package kata.hotel.use_cases;
 
 import kata.hotel.domain.Hotel;
+import kata.hotel.domain.HotelId;
 import kata.hotel.domain.HotelsRepository;
 
 public class AddHotel {
@@ -13,6 +14,6 @@ public class AddHotel {
   }
 
   public void execute(String hotelId, String hotelName) {
-    hotelsRepository.save(new Hotel(hotelId, hotelName));
+    hotelsRepository.save(new Hotel(new HotelId(hotelId), hotelName));
   }
 }

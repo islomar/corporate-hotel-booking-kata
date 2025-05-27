@@ -6,7 +6,7 @@ import java.util.List;
 public interface HotelsRepository {
   List<Hotel> findAll();
 
-  Hotel findHotelById(String hotelId);
+  Hotel findHotelById(HotelId hotelId);
 
   void save(Hotel hotel);
 }

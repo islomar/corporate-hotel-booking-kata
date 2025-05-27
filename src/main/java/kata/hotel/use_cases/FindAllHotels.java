@@ -18,7 +18,7 @@ public class FindAllHotels {
 
     List<HotelQueryResponse> allHotelsResponse =
         allHotels.stream()
-            .map(hotel -> new HotelQueryResponse(hotel.id(), hotel.name()))
+            .map(hotel -> new HotelQueryResponse(hotel.id().value(), hotel.name()))
             .collect(Collectors.toList());
     return new FindAllHotelsResponse(allHotelsResponse);
   }

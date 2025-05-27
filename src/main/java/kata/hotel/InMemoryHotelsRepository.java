@@ -5,10 +5,11 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import kata.hotel.domain.Hotel;
+import kata.hotel.domain.HotelId;
 import kata.hotel.domain.HotelsRepository;
 
 public class InMemoryHotelsRepository implements HotelsRepository {
-  private final Map<String, Hotel> hotels = new ConcurrentHashMap<>();
+  private final Map<HotelId, Hotel> hotels = new ConcurrentHashMap<>();
 
   @Override
   public List<Hotel> findAll() {
@@ -18,7 +19,7 @@ public class InMemoryHotelsRepository implements HotelsRepository {
   }
 
   @Override
-  public Hotel findHotelById(String hotelId) {
+  public Hotel findHotelById(HotelId hotelId) {
     return null;
   }
 
