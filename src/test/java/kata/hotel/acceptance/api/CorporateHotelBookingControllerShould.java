@@ -8,6 +8,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 import java.util.UUID;
 import kata.hotel.api.CorporateHotelBookingController;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
@@ -45,21 +46,20 @@ public class CorporateHotelBookingControllerShould {
         .andExpect(jsonPath("$[0].hotelName").value(anyHotelName));
   }
 
-  //  @Test
-  //  public void doNotCreateTwoHotelsWithSameName() throws Exception {
-  //    UUID anyHotelId = UUID.randomUUID();
-  //    String anyHotelName = "Any hotel name";
-  //    String hotelJson = "{\"id\":\"" + anyHotelId + "\",\"name\":\"" + anyHotelName + "\"}";
-  //
-  //    mockMvc
-  //        .perform(post("/hotels").contentType(MediaType.APPLICATION_JSON).content(hotelJson))
-  //        .andExpect(status().isCreated());
-  //
-  //    mockMvc
-  //        .perform(get("/hotels"))
-  //        .andExpect(status().isOk())
-  //        .andExpect(jsonPath("$", hasSize(1)))
-  //        .andExpect(jsonPath("$[0].hotelId").value(anyHotelId.toString()))
-  //        .andExpect(jsonPath("$[0].hotelName").value(anyHotelName));
-  //  }
+  @Disabled
+  public void doNotCreateTwoHotelsWithSameName() throws Exception {
+    UUID anyHotelId1 = UUID.randomUUID();
+    UUID anyHotelId2 = UUID.randomUUID();
+    String anyHotelName = "Any hotel name";
+    String hotelJson1 = "{\"id\":\"" + anyHotelId1 + "\",\"name\":\"" + anyHotelName + "\"}";
+    String hotelJson2 = "{\"id\":\"" + anyHotelId2 + "\",\"name\":\"" + anyHotelName + "\"}";
+
+    mockMvc
+        .perform(post("/hotels").contentType(MediaType.APPLICATION_JSON).content(hotelJson1))
+        .andExpect(status().isCreated());
+
+    mockMvc
+        .perform(post("/hotels").contentType(MediaType.APPLICATION_JSON).content(hotelJson2))
+        .andExpect(status().isConflict());
+  }
 }
