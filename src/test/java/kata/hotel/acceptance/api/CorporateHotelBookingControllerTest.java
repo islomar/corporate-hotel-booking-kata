@@ -35,21 +35,19 @@ public class CorporateHotelBookingControllerTest {
 
     @Test
     public void shouldAddNewHotel() throws Exception {
-        String hotelJson = "{\"name\":\"Hilton\",\"location\":\"London\"}";
+        String hotelJson = "{\"name\":\"Hilton\"}";
 
         mockMvc.perform(post("/hotels")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(hotelJson))
                 .andExpect(status().isCreated())
                 .andExpect(jsonPath("$.id", notNullValue()))
-                .andExpect(jsonPath("$.name", is("Hilton")))
-                .andExpect(jsonPath("$.location", is("London")));
+                .andExpect(jsonPath("$.name", is("Hilton")));
 
         mockMvc.perform(get("/hotels"))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$", hasSize(1)))
-                .andExpect(jsonPath("$[0].name").value("Hilton"))
-                .andExpect(jsonPath("$[0].location").value("London"));
+                .andExpect(jsonPath("$[0].name").value("Hilton"));
     }
 
     @Disabled

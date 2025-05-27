@@ -3,17 +3,10 @@ package kata.hotel.api;
 public class Hotel {
     private final String id;
     private final String name;
-    private final String location;
 
-    // Default constructor for JSON deserialization
-    public Hotel() {
-        this(null, null, null);
-    }
-
-    public Hotel(String id, String name, String location) {
+    public Hotel(String id, String name) {
         this.id = id;
         this.name = name;
-        this.location = location;
     }
 
     public String getId() {
@@ -22,9 +15,5 @@ public class Hotel {
 
     public String getName() {
         return name;
-    }
-
-    public String getLocation() {
-        return location;
     }
 }

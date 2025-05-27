@@ -27,7 +27,7 @@ public class CorporateHotelBookingController {
     @ResponseStatus(HttpStatus.CREATED)
     public Hotel addHotel(@RequestBody Hotel hotelRequest) {
         String id = UUID.randomUUID().toString();
-        Hotel hotel = new Hotel(id, hotelRequest.getName(), hotelRequest.getLocation());
+        Hotel hotel = new Hotel(id, hotelRequest.getName());
         hotels.put(id, hotel);
         return hotel;
     }
