@@ -3,6 +3,8 @@ plugins {
 	id 'info.solidsoft.pitest' version '1.15.0'
 	id 'jacoco'
 	id "com.diffplug.spotless" version "6.25.0"
+	id 'org.springframework.boot' version '3.2.3'
+	id 'io.spring.dependency-management' version '1.1.4'
 }
 
 repositories {
@@ -16,6 +18,8 @@ java {
 }
 
 dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testImplementation 'org.junit.jupiter:junit-jupiter-api:5.10.2'
 	testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.10.2'
 	testImplementation 'org.hamcrest:hamcrest:2.2'
@@ -41,6 +45,8 @@ jacocoTestReport {
 dependencyLocking {
 	lockAllConfigurations()
 }
+
+// Command to update lock file: ./gradlew dependencies --write-locks
 
 spotless {
 	// optional: limit format enforcement to just the files changed by this feature branch
