@@ -1,10 +1,12 @@
-package kata.hotel;
+package kata.hotel.acceptance.api;
 
+import kata.hotel.api.CorporateHotelBookingController;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.http.MediaType;
+import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 
@@ -13,13 +15,13 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
-import static org.hamcrest.Matchers.containsString;
 import static org.hamcrest.Matchers.hasSize;
 import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.notNullValue;
 
-@WebMvcTest(HotelController.class)
-public class HotelControllerTest {
+@WebMvcTest(CorporateHotelBookingController.class)
+@ContextConfiguration(classes = CorporateHotelBookingController.class) // Needed because the package doesn't match exactly
+public class CorporateHotelBookingControllerTest {
 
     @Autowired
     private MockMvc mockMvc;

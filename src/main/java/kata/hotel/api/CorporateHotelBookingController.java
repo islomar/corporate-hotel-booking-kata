@@ -1,8 +1,7 @@
-package kata.hotel;
+package kata.hotel.api;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
@@ -15,7 +14,7 @@ import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;
 
 @RestController
-public class HotelController {
+public class CorporateHotelBookingController {
 
     private final Map<String, Hotel> hotels = new ConcurrentHashMap<>();
 

@@ -1,4 +1,4 @@
-package kata.hotel;
+package kata.hotel.api;
 
 public class Hotel {
     private final String id;
