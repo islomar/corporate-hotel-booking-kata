@@ -1,10 +1,12 @@
 /* (C)2025 */
 package kata.hotel.api;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
+import kata.hotel.InMemoryHotelsRepository;
+import kata.hotel.domain.HotelsRepository;
+import kata.hotel.use_cases.AddHotel;
+import kata.hotel.use_cases.FindAllHotels;
+import kata.hotel.use_cases.HotelQueryResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -14,17 +16,22 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class CorporateHotelBookingController {
+  private final HotelsRepository hotelsRepository;
 
-  private final Map<String, AddHotelRequest> hotels = new ConcurrentHashMap<>();
+  public CorporateHotelBookingController() {
+    this.hotelsRepository = new InMemoryHotelsRepository();
+  }
 
   @GetMapping("/hotels")
-  public List<AddHotelRequest> getHotels() {
-    return new ArrayList<>(hotels.values());
+  public List<HotelQueryResponse> getHotels() {
+    FindAllHotels findAllHotels = new FindAllHotels(this.hotelsRepository);
+    return findAllHotels.execute().allExistingHotels();
   }
 
   @PostMapping("/hotels")
   @ResponseStatus(HttpStatus.CREATED)
   public void addHotel(@RequestBody AddHotelRequest addHotelRequest) {
-    hotels.put(addHotelRequest.id(), addHotelRequest);
+    AddHotel addHotel = new AddHotel(this.hotelsRepository);
+    addHotel.execute(addHotelRequest.id(), addHotelRequest.name());
   }
 }

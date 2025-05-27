@@ -34,6 +34,9 @@ dependencies {
 test {
 	useJUnitPlatform()
 	finalizedBy jacocoTestReport // report is always generated after tests run
+
+	// Include test classes with names ending with "Should"
+	include '**/*Should.class'
 }
 
 pitest {

@@ -18,17 +18,17 @@ import org.springframework.test.web.servlet.MockMvc;
 @WebMvcTest(CorporateHotelBookingController.class)
 @ContextConfiguration(classes = CorporateHotelBookingController.class)
 // Needed because the package doesn't match exactly
-public class CorporateHotelBookingControllerTest {
+public class CorporateHotelBookingControllerShould {
 
   @Autowired private MockMvc mockMvc;
 
   @Test
-  public void shouldReturnEmptyListOfHotels() throws Exception {
+  public void returnEmptyListOfHotels() throws Exception {
     mockMvc.perform(get("/hotels")).andExpect(status().isOk()).andExpect(content().string("[]"));
   }
 
   @Test
-  public void shouldAddNewHotel() throws Exception {
+  public void addNewHotel() throws Exception {
     UUID anyHotelId = UUID.randomUUID();
     String anyHotelName = "Any hotel name";
     String hotelJson = "{\"id\":\"" + anyHotelId + "\",\"name\":\"" + anyHotelName + "\"}";
@@ -41,7 +41,7 @@ public class CorporateHotelBookingControllerTest {
         .perform(get("/hotels"))
         .andExpect(status().isOk())
         .andExpect(jsonPath("$", hasSize(1)))
-        .andExpect(jsonPath("$[0].id").value(anyHotelId.toString()))
-        .andExpect(jsonPath("$[0].name").value(anyHotelName));
+        .andExpect(jsonPath("$[0].hotelId").value(anyHotelId.toString()))
+        .andExpect(jsonPath("$[0].hotelName").value(anyHotelName));
   }
 }
