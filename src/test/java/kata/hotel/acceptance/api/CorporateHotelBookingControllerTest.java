@@ -8,6 +8,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
+import java.util.UUID;
 import kata.hotel.api.CorporateHotelBookingController;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,7 +31,9 @@ public class CorporateHotelBookingControllerTest {
 
   @Test
   public void shouldAddNewHotel() throws Exception {
-    String hotelJson = "{\"name\":\"Hilton\"}";
+    UUID anyHotelId = UUID.randomUUID();
+    String anyHotelName = "Any hotel name";
+    String hotelJson = "{\"id\":\"" + anyHotelId + "\",\"name\":\"" + anyHotelName + "\"}";
 
     mockMvc
         .perform(post("/hotels").contentType(MediaType.APPLICATION_JSON).content(hotelJson))
@@ -40,6 +43,7 @@ public class CorporateHotelBookingControllerTest {
         .perform(get("/hotels"))
         .andExpect(status().isOk())
         .andExpect(jsonPath("$", hasSize(1)))
-        .andExpect(jsonPath("$[0].name").value("Hilton"));
+        .andExpect(jsonPath("$[0].id").value(anyHotelId.toString()))
+        .andExpect(jsonPath("$[0].name").value(anyHotelName));
   }
 }

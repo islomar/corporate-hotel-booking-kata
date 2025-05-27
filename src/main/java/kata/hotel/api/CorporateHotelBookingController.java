@@ -4,7 +4,6 @@ package kata.hotel.api;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -26,8 +25,6 @@ public class CorporateHotelBookingController {
   @PostMapping("/hotels")
   @ResponseStatus(HttpStatus.CREATED)
   public void addHotel(@RequestBody AddHotelRequest addHotelRequest) {
-    String id = UUID.randomUUID().toString();
-    AddHotelRequest hotel = new AddHotelRequest(id, addHotelRequest.name());
-    hotels.put(id, hotel);
+    hotels.put(addHotelRequest.id(), addHotelRequest);
   }
 }
