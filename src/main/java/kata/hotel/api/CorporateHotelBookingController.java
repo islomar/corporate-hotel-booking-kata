@@ -25,10 +25,9 @@ public class CorporateHotelBookingController {
 
   @PostMapping("/hotels")
   @ResponseStatus(HttpStatus.CREATED)
-  public AddHotelRequest addHotel(@RequestBody AddHotelRequest addHotelRequest) {
+  public void addHotel(@RequestBody AddHotelRequest addHotelRequest) {
     String id = UUID.randomUUID().toString();
     AddHotelRequest hotel = new AddHotelRequest(id, addHotelRequest.name());
     hotels.put(id, hotel);
-    return hotel;
   }
 }

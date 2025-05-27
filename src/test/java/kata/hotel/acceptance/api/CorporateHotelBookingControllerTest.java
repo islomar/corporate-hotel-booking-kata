@@ -2,8 +2,6 @@
 package kata.hotel.acceptance.api;
 
 import static org.hamcrest.Matchers.hasSize;
-import static org.hamcrest.Matchers.is;
-import static org.hamcrest.Matchers.notNullValue;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
@@ -36,9 +34,7 @@ public class CorporateHotelBookingControllerTest {
 
     mockMvc
         .perform(post("/hotels").contentType(MediaType.APPLICATION_JSON).content(hotelJson))
-        .andExpect(status().isCreated())
-        .andExpect(jsonPath("$.id", notNullValue()))
-        .andExpect(jsonPath("$.name", is("Hilton")));
+        .andExpect(status().isCreated());
 
     mockMvc
         .perform(get("/hotels"))
