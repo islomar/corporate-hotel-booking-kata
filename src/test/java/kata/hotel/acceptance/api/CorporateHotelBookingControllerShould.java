@@ -44,4 +44,22 @@ public class CorporateHotelBookingControllerShould {
         .andExpect(jsonPath("$[0].hotelId").value(anyHotelId.toString()))
         .andExpect(jsonPath("$[0].hotelName").value(anyHotelName));
   }
+
+  //  @Test
+  //  public void doNotCreateTwoHotelsWithSameName() throws Exception {
+  //    UUID anyHotelId = UUID.randomUUID();
+  //    String anyHotelName = "Any hotel name";
+  //    String hotelJson = "{\"id\":\"" + anyHotelId + "\",\"name\":\"" + anyHotelName + "\"}";
+  //
+  //    mockMvc
+  //        .perform(post("/hotels").contentType(MediaType.APPLICATION_JSON).content(hotelJson))
+  //        .andExpect(status().isCreated());
+  //
+  //    mockMvc
+  //        .perform(get("/hotels"))
+  //        .andExpect(status().isOk())
+  //        .andExpect(jsonPath("$", hasSize(1)))
+  //        .andExpect(jsonPath("$[0].hotelId").value(anyHotelId.toString()))
+  //        .andExpect(jsonPath("$[0].hotelName").value(anyHotelName));
+  //  }
 }
