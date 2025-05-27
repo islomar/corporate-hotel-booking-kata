@@ -1,10 +1,12 @@
 /* (C)2025 */
 package kata.hotel.domain;
 
-import java.util.Map;
+import java.util.List;
 
 public interface HotelsRepository {
-  Map<String, String> findAll();
+  List<Hotel> findAll();
 
-  void save(String hotelId, String hotelName);
+  Hotel findHotelById(String hotelId);
+
+  void save(Hotel hotel);
 }

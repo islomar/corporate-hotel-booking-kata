@@ -2,8 +2,8 @@
 package kata.hotel.use_cases;
 
 import java.util.List;
-import java.util.Map;
 import java.util.stream.Collectors;
+import kata.hotel.domain.Hotel;
 import kata.hotel.domain.HotelsRepository;
 
 public class FindAllHotels {
@@ -14,11 +14,11 @@ public class FindAllHotels {
   }
 
   public FindAllHotelsResponse execute() {
-    Map<String, String> allHotels = this.hotelsRepository.findAll();
+    List<Hotel> allHotels = this.hotelsRepository.findAll();
 
     List<HotelQueryResponse> allHotelsResponse =
-        allHotels.entrySet().stream()
-            .map(hotel -> new HotelQueryResponse(hotel.getKey(), hotel.getValue()))
+        allHotels.stream()
+            .map(hotel -> new HotelQueryResponse(hotel.id(), hotel.name()))
             .collect(Collectors.toList());
     return new FindAllHotelsResponse(allHotelsResponse);
   }

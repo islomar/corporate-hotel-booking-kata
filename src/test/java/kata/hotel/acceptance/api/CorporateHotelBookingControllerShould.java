@@ -42,8 +42,8 @@ public class CorporateHotelBookingControllerShould {
         .perform(get("/hotels"))
         .andExpect(status().isOk())
         .andExpect(jsonPath("$", hasSize(1)))
-        .andExpect(jsonPath("$[0].hotelId").value(anyHotelId.toString()))
-        .andExpect(jsonPath("$[0].hotelName").value(anyHotelName));
+        .andExpect(jsonPath("$[0].id").value(anyHotelId.toString()))
+        .andExpect(jsonPath("$[0].name").value(anyHotelName));
   }
 
   @Disabled
