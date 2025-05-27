@@ -19,9 +19,8 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
 
 @WebMvcTest(CorporateHotelBookingController.class)
-@ContextConfiguration(
-    classes =
-        CorporateHotelBookingController.class) // Needed because the package doesn't match exactly
+@ContextConfiguration(classes = CorporateHotelBookingController.class)
+// Needed because the package doesn't match exactly
 public class CorporateHotelBookingControllerTest {
 
   @Autowired private MockMvc mockMvc;
