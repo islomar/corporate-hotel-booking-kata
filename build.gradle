@@ -1,0 +1,64 @@
+plugins {
+	id 'java-library'
+	id 'info.solidsoft.pitest' version '1.15.0'
+	id 'jacoco'
+	id "com.diffplug.spotless" version "6.25.0"
+}
+
+repositories {
+	mavenCentral()
+}
+
+java {
+	toolchain {
+		languageVersion.set(JavaLanguageVersion.of(21))
+	}
+}
+
+dependencies {
+	testImplementation 'org.junit.jupiter:junit-jupiter-api:5.10.2'
+	testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.10.2'
+	testImplementation 'org.hamcrest:hamcrest:2.2'
+	testImplementation 'org.hamcrest:hamcrest-library:2.2'
+}
+
+test {
+	useJUnitPlatform()
+	finalizedBy jacocoTestReport // report is always generated after tests run
+}
+
+pitest {
+	junit5PluginVersion = '1.2.1'
+	targetClasses = ['kata.*']
+	threads = 4
+	excludedMethods = ['equals', 'hashCode', 'toString']
+}
+
+jacocoTestReport {
+	dependsOn test // tests are required to run before generating the report
+}
+
+dependencyLocking {
+	lockAllConfigurations()
+}
+
+spotless {
+	// optional: limit format enforcement to just the files changed by this feature branch
+	ratchetFrom 'origin/main'
+
+	format 'misc', {
+		// define the files to apply `misc` to
+		target '*.gradle', '.gitattributes', '.gitignore'
+
+		// define the steps to apply to those files
+		trimTrailingWhitespace()
+		indentWithTabs() // or spaces. Takes an integer argument if you don't like 4
+		endWithNewline()
+	}
+	java {
+		removeUnusedImports()
+		googleJavaFormat()
+		formatAnnotations()
+		licenseHeader '/* (C)$YEAR */'
+	}
+}
