@@ -14,6 +14,15 @@ public class AddHotel {
   }
 
   public void execute(String hotelId, String hotelName) {
+    if (hotelsRepository.existsByName(hotelName)) {
+      throw new HotelAlreadyExistsException("Hotel with name '" + hotelName + "' already exists");
+    }
     hotelsRepository.save(new Hotel(new HotelId(hotelId), hotelName));
+  }
+
+  public static class HotelAlreadyExistsException extends RuntimeException {
+    public HotelAlreadyExistsException(String message) {
+      super(message);
+    }
   }
 }

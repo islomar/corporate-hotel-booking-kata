@@ -8,7 +8,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 import java.util.UUID;
 import kata.hotel.api.CorporateHotelBookingController;
-import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
@@ -22,6 +22,12 @@ import org.springframework.test.web.servlet.MockMvc;
 public class CorporateHotelBookingControllerShould {
 
   @Autowired private MockMvc mockMvc;
+  @Autowired private CorporateHotelBookingController controller;
+
+  @BeforeEach
+  public void setUp() {
+    controller.getHotelsRepository().clear();
+  }
 
   @Test
   public void returnEmptyListOfHotels() throws Exception {
@@ -46,7 +52,7 @@ public class CorporateHotelBookingControllerShould {
         .andExpect(jsonPath("$[0].name").value(anyHotelName));
   }
 
-  @Disabled
+  @Test
   public void doNotCreateTwoHotelsWithSameName() throws Exception {
     UUID anyHotelId1 = UUID.randomUUID();
     UUID anyHotelId2 = UUID.randomUUID();

@@ -13,9 +13,7 @@ public class InMemoryHotelsRepository implements HotelsRepository {
 
   @Override
   public List<Hotel> findAll() {
-    return this.hotels.entrySet().stream()
-        .map(hotel -> new Hotel(hotel.getKey(), hotel.getValue().name()))
-        .toList();
+    return this.hotels.values().stream().toList();
   }
 
   @Override
@@ -26,5 +24,15 @@ public class InMemoryHotelsRepository implements HotelsRepository {
   @Override
   public void save(Hotel hotel) {
     hotels.put(hotel.id(), hotel);
+  }
+
+  @Override
+  public boolean existsByName(String name) {
+    return hotels.values().stream().anyMatch(hotel -> hotel.name().equals(name));
+  }
+
+  @Override
+  public void clear() {
+    hotels.clear();
   }
 }

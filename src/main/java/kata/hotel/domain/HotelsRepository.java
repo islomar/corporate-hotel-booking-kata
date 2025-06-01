@@ -9,4 +9,8 @@ public interface HotelsRepository {
   Hotel findHotelById(HotelId hotelId);
 
   void save(Hotel hotel);
+
+  boolean existsByName(String name);
+
+  void clear();
 }
