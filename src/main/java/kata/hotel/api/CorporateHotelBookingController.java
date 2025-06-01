@@ -2,7 +2,6 @@
 package kata.hotel.api;
 
 import java.util.List;
-import kata.hotel.InMemoryHotelsRepository;
 import kata.hotel.domain.HotelsRepository;
 import kata.hotel.use_cases.AddHotel;
 import kata.hotel.use_cases.FindAllHotels;
@@ -19,10 +18,6 @@ import org.springframework.web.server.ResponseStatusException;
 @RestController
 public class CorporateHotelBookingController {
   private final HotelsRepository hotelsRepository;
-
-  public CorporateHotelBookingController() {
-    this.hotelsRepository = new InMemoryHotelsRepository();
-  }
 
   public CorporateHotelBookingController(HotelsRepository hotelsRepository) {
     this.hotelsRepository = hotelsRepository;
