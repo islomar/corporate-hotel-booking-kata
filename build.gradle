@@ -1,3 +1,10 @@
+// Set Java compatibility for all plugins
+buildscript {
+	ext {
+		javaVersion = JavaVersion.VERSION_21
+	}
+}
+
 plugins {
 	id 'java-library'
 	id 'info.solidsoft.pitest' version '1.15.0'
@@ -5,6 +12,11 @@ plugins {
 	id "com.diffplug.spotless" version "6.25.0"
 	id 'org.springframework.boot' version '3.2.3'
 	id 'io.spring.dependency-management' version '1.1.4'
+}
+
+// Configure all tasks to use Java 21
+tasks.withType(JavaCompile).configureEach {
+	options.release = 21
 }
 
 // Ensure Spring Boot plugin uses Java 21
@@ -20,6 +32,9 @@ java {
 	toolchain {
 		languageVersion.set(JavaLanguageVersion.of(21))
 	}
+	// Set source and target compatibility to ensure all tasks use the correct Java version
+	sourceCompatibility = JavaVersion.VERSION_21
+	targetCompatibility = JavaVersion.VERSION_21
 }
 
 dependencies {
