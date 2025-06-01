@@ -6,6 +6,7 @@ import kata.hotel.InMemoryHotelsRepository;
 import kata.hotel.domain.HotelsRepository;
 import kata.hotel.use_cases.AddHotel;
 import kata.hotel.use_cases.FindAllHotels;
+import kata.hotel.use_cases.HotelAlreadyExistsException;
 import kata.hotel.use_cases.HotelQueryResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -39,7 +40,7 @@ public class CorporateHotelBookingController {
     AddHotel addHotel = new AddHotel(this.hotelsRepository);
     try {
       addHotel.execute(addHotelRequest.id(), addHotelRequest.name());
-    } catch (AddHotel.HotelAlreadyExistsException e) {
+    } catch (HotelAlreadyExistsException e) {
       throw new ResponseStatusException(HttpStatus.CONFLICT, e.getMessage());
     }
   }

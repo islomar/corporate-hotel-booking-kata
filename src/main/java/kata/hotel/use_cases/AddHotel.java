@@ -19,10 +19,4 @@ public class AddHotel {
     }
     hotelsRepository.save(new Hotel(new HotelId(hotelId), hotelName));
   }
-
-  public static class HotelAlreadyExistsException extends RuntimeException {
-    public HotelAlreadyExistsException(String message) {
-      super(message);
-    }
-  }
 }
