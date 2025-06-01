@@ -7,7 +7,6 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 import java.util.UUID;
-import kata.hotel.api.CorporateHotelBookingController;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,17 +15,17 @@ import org.springframework.http.MediaType;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
 
-@WebMvcTest(CorporateHotelBookingController.class)
-@ContextConfiguration(classes = CorporateHotelBookingController.class)
+@WebMvcTest(TestableCorporateHotelBookingController.class)
+@ContextConfiguration(classes = TestableCorporateHotelBookingController.class)
 // Needed because the package doesn't match exactly
 public class CorporateHotelBookingControllerShould {
 
   @Autowired private MockMvc mockMvc;
-  @Autowired private CorporateHotelBookingController controller;
+  @Autowired private TestableCorporateHotelBookingController controller;
 
   @BeforeEach
   public void setUp() {
-    controller.getHotelsRepository().clear();
+    controller.clearRepository();
   }
 
   @Test

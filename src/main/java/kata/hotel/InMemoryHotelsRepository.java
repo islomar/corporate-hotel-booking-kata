@@ -31,7 +31,6 @@ public class InMemoryHotelsRepository implements HotelsRepository {
     return hotels.values().stream().anyMatch(hotel -> hotel.name().equals(name));
   }
 
-  @Override
   public void clear() {
     hotels.clear();
   }

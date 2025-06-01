@@ -24,6 +24,10 @@ public class CorporateHotelBookingController {
     this.hotelsRepository = new InMemoryHotelsRepository();
   }
 
+  public CorporateHotelBookingController(HotelsRepository hotelsRepository) {
+    this.hotelsRepository = hotelsRepository;
+  }
+
   public HotelsRepository getHotelsRepository() {
     return hotelsRepository;
   }

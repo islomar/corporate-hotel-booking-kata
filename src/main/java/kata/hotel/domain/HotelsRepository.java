@@ -11,6 +11,4 @@ public interface HotelsRepository {
   void save(Hotel hotel);
 
   boolean existsByName(String name);
-
-  void clear();
 }
